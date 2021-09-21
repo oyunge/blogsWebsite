@@ -9,7 +9,7 @@ require "includes/dbh.php"
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Bootstrap Admin Template : Dream</title>
+    <title></title>
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -60,6 +60,16 @@ require "includes/dbh.php"
                                             <div class="form-group">
                                                 <label>Blog Category</label>
                                                 <select class="form-control" name="blog-category">
+                                                   <option value="">Select a category</option>>
+                                                   <?php
+                                                    $sqlCategories = "SELECT * FROM blog_category";
+                                                    $queryCategories = mysqli_query($con, $sqlCategories);
+                                                    while ($rowCategories = mysqli_fetch_assoc($queryCategories)) {
+                                                        $cId = $rowCategories['n_category_id'];
+                                                        $cName = $rowCategories['v_category_title'];
+                                                        echo "<option value='".$cId."' >".$cName."</option>";
+                                                    }
+                                                    ?>
                                                     <option>1</option>
                                                 </select>
                                             </div>
